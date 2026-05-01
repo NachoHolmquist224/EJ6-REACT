@@ -26,23 +26,31 @@ const FormularioColor = () => {
     setArrayColores([...arrayColores, color.trim()]);
     //limpiar el input
     setColor("");
-
-    return (
-      <section>
-        <form onSubmit={handleSubmit}>
-          <div className="d-flex gap-2 align-items-center">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Ingrese un color en inglés o su código hexadecimal"
-              required
-            />
-            <button className="btn btn-primary">Agregar</button>
-          </div>
-        </form>
-      </section>
-    );
   };
+
+  const borrarColor = (colorABorrar) => {
+    const arrayColoresFiltrado = arrayColores.filter(
+      (itemColor) => itemColor.toLowerCase() !== colorABorrar.toLowerCase(),
+    );
+    setArrayColores(arrayColoresFiltrado);
+  };
+
+  return (
+    <section>
+      <form onSubmit={handleSubmit}>
+        <div className="d-flex gap-2 align-items-center">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Ingrese un color en inglés o su código hexadecimal"
+            required
+          />
+          <button className="btn btn-primary">Agregar</button>
+        </div>
+      </form>
+      <Listacolores arrayColoresprops={arrayColores} borrarColor={borrarColor}></Listacolores>
+    </section>
+  );
 };
 
 export default FormularioColor;
