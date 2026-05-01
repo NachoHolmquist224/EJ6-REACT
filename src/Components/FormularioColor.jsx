@@ -1,9 +1,8 @@
-import React, { use } from "react";
 import { useState, useEffect } from "react";
+import ListaColores from "./ListaColores";
 
 const FormularioColor = () => {
-  const arrayColoresLocalStorage =
-    JSON.parse(localStorage.getItem("colores")) || [];
+  const arrayColoresLocalStorage = JSON.parse(localStorage.getItem("colores")) || [];
   const [arrayColores, setArrayColores] = useState(arrayColoresLocalStorage);
   const [color, setColor] = useState("");
 
@@ -14,9 +13,7 @@ const FormularioColor = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     //validamos el color
-    const colorBuscado = arrayColores.find(
-      (itemColor) => itemColor.toLowerCase() === color.toLowerCase().trim(),
-    );
+    const colorBuscado = arrayColores.find((itemColor) => itemColor.toLowerCase() === color.toLowerCase().trim());
     console.log(colorBuscado);
 
     if (colorBuscado) {
@@ -43,12 +40,13 @@ const FormularioColor = () => {
             type="text"
             className="form-control"
             placeholder="Ingrese un color en inglés o su código hexadecimal"
-            required
+            onChange={(e)=> setColor(e.target.value)}
+            value={color}
           />
           <button className="btn btn-primary">Agregar</button>
         </div>
       </form>
-      <Listacolores arrayColoresprops={arrayColores} borrarColor={borrarColor}></Listacolores>
+      <ListaColores arrayColoresprops={arrayColores} borrarColor={borrarColor}></ListaColores>
     </section>
   );
 };
